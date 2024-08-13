@@ -1,0 +1,206 @@
+.Daily_img {
+  image-rendering: -moz-crisp-edges; /* firefox */
+  image-rendering: -o-crisp-edges; /* opera */
+  image-rendering: -webkit-optimize-contrast; /* chrome(비표준) */
+  image-rendering: crisp-edges;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+div [id="Daily_container"] {
+  background-color: #f8f8f8;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  display: flex;
+}
+div [id="Daily_title_row"] {
+  margin: 50px 0px;
+  text-align: center;
+  width: 100%;
+}
+
+div [id="Daily_row"] {
+  flex-wrap: nowrap;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 60px;
+  justify-content: center;
+}
+div [id="Daily_row"]:nth-child(1) {
+  margin-top: 180px;
+}
+div [id="Daily_row"]:last-child {
+  margin-bottom: 80px;
+}
+.Daily_perfume {
+  font-weight: 700;
+}
+.Daily_hr:first-child {
+  margin: 0px auto 15px;
+  width: 130px;
+  border-top: 3px solid black;
+}
+.Daily_hr:last-child {
+  border-top: 3px solid black;
+  margin: 10px auto 0px;
+  width: 130px;
+}
+
+div[id="Daily_col"] {
+  margin-right: 5px;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  margin: 0 12px;
+}
+.Daily_title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.Daily_p {
+  font-size: 13px;
+  font-weight: 400;
+}
+.Daily_price {
+  width: 100%;
+}
+/* hover_1 */
+.Daily_hover_1 {
+  display: none;
+}
+
+.Daily_hover_1_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+/* hover_2 */
+.Daily_hover_2 {
+  display: none;
+}
+
+.Daily_hover_2_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_3 */
+.Daily_hover_3 {
+  display: none;
+}
+
+.Daily_hover_3_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_4 */
+.Daily_hover_4 {
+  display: none;
+}
+
+.Daily_hover_4_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_5 */
+.Daily_hover_5 {
+  display: none;
+}
+
+.Daily_hover_5_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_6 */
+.Daily_hover_6 {
+  display: none;
+}
+
+.Daily_hover_6_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  div [id="Daily_row"] {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 991px) {
+  div [id="Daily_row"] {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  div[id="Daily_col"] {
+    margin-bottom: 60px;
+  }
+  div[id="Daily_col"]:nth-child(3) {
+    margin-bottom: 0px;
+  }
+  div[id="Daily_col"]:nth-child(4) {
+    margin-bottom: 0px;
+  }
+}

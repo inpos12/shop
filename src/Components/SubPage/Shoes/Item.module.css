@@ -1,0 +1,209 @@
+.Shoes_img {
+  image-rendering: -moz-crisp-edges; /* firefox */
+  image-rendering: -o-crisp-edges; /* opera */
+  image-rendering: -webkit-optimize-contrast; /* chrome(비표준) */
+  image-rendering: crisp-edges;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+div [id="Shoes_container"] {
+  background-color: #f8f8f8;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  display: flex;
+}
+div [id="Shoes_title_row"] {
+  margin: 50px 0px;
+  text-align: center;
+  width: 100%;
+}
+
+div [id="Shoes_row"] {
+  flex-wrap: nowrap;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 60px;
+  justify-content: center;
+}
+div [id="Shoes_row"]:nth-child(1) {
+  margin-top: 180px;
+}
+div [id="Shoes_row"]:last-child {
+  margin-bottom: 80px;
+}
+.Shoes_perfume {
+  font-weight: 700;
+}
+.Shoes_hr:first-child {
+  margin: 0px auto 15px;
+  width: 130px;
+  border-top: 3px solid black;
+}
+.Shoes_hr:last-child {
+  border-top: 3px solid black;
+  margin: 10px auto 0px;
+  width: 130px;
+}
+
+div[id="Shoes_col"] {
+  margin-right: 5px;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  margin: 0 12px;
+}
+.Shoes_title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.Shoes_p {
+  font-size: 13px;
+  font-weight: 400;
+}
+.Shoes_price {
+  width: 100%;
+}
+/* hover_1 */
+.Shoes_hover_1 {
+  display: none;
+}
+
+.Shoes_hover_1_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+/* hover_2 */
+.Shoes_hover_2 {
+  display: none;
+}
+
+.Shoes_hover_2_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_3 */
+.Shoes_hover_3 {
+  display: none;
+}
+
+.Shoes_hover_3_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_4 */
+.Shoes_hover_4 {
+  display: none;
+}
+
+.Shoes_hover_4_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_5 */
+.Shoes_hover_5 {
+  display: none;
+}
+
+.Shoes_hover_5_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+/* hover_6 */
+.Shoes_hover_6 {
+  display: none;
+}
+
+.Shoes_hover_6_a {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  div [id="Shoes_row"] {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  div[id="Shoes_col"] {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  div [id="Shoes_row"] {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  div[id="Shoes_col"] {
+    margin-bottom: 60px;
+  }
+  div[id="Shoes_col"]:nth-child(3) {
+    margin-bottom: 0px;
+  }
+  div[id="Shoes_col"]:nth-child(4) {
+    margin-bottom: 0px;
+  }
+}

@@ -1,0 +1,159 @@
+* {
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit 표준 X */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor; /* IE 표준 X */
+}
+
+div [id="Item_page"] {
+  padding-top: 70px;
+  margin-bottom: 60px;
+}
+div [id="Item_row"] {
+  background-color: #f4f4f4;
+}
+div [id="Item_img"] {
+  padding: 0;
+}
+div [id="Item_img"] img {
+  width: 100%;
+}
+div [id="Item_p"] {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Item_p_title {
+  text-align: left;
+}
+.Item_p_title {
+  text-align: left;
+}
+.Item_p_price {
+  text-align: right;
+}
+.Item_p_price h2 {
+  font-weight: 900;
+}
+.Item_p_Amount {
+  display: flex;
+  justify-content: space-between;
+}
+.Item_p_Amount_1 {
+  display: flex;
+}
+.Down_img {
+  height: 32px;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+.Item_p_color {
+  display: flex;
+  justify-content: space-between;
+}
+.Item_p_color_1 {
+  display: flex;
+}
+.Item_hr {
+  margin: 0 auto;
+  transform: translateY(-25px);
+  border-top: 1px solid gray;
+  width: 100%;
+}
+.Amount_list {
+  background-color: white;
+  transform: translateY(-25px);
+  display: none;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+/* 250mm~280mm*/
+
+div [id="Amount_1"] {
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  z-index: 10;
+}
+div [id="Amount_2"] {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  margin-top: 25px;
+
+  z-index: 10;
+}
+div [id="Amount_3"] {
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  margin-top: 50px;
+  z-index: 10;
+}
+div [id="Amount_4"] {
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  margin-top: 75px;
+  z-index: 10;
+}
+div [id="Amount_5"] {
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  margin-top: 100px;
+  z-index: 10;
+}
+div [id="Amount_6"] {
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  margin-top: 125px;
+  z-index: 10;
+}
+
+.Amount_list p {
+  border: 1px solid gray;
+  margin-bottom: 0;
+}
+.Amount_list p:first-child {
+  border-top: none;
+}
+.Item_buy_button_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Item_buy_button {
+  font-size: 20px;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+.Item_add_button {
+  font-size: 20px;
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+@media (max-width: 575px) {
+  div [id="Item_p"] {
+    margin-top: 20px;
+  }
+}

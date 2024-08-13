@@ -1,0 +1,47 @@
+div [id="Section3_title_row"] {
+  margin: 50px 0px;
+  text-align: center;
+  width: 100%;
+}
+
+div[id="Section3_col"] {
+  margin-right: 5px;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  margin: 0 12px;
+}
+
+.Section3_hover_1 {
+  display: none;
+}
+.Section3_col_1:hover .Section3_hover_1 {
+  display: block;
+}
+
+div [id="Section3_button"] {
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+.Section3_button {
+  display: flex;
+  justify-content: center;
+}
+.custom-title {
+  margin-top: 20px;
+}
+
+.Section3_button h3:hover {
+  background-color: gray;
+  color: #f8f8f8;
+}
+@media (max-width: 575px) {
+  div[id="Section3_col"] {
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 991px) {
+  div [id="Section3_col"] {
+    margin-bottom: 0px;
+  }
+}

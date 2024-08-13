@@ -1,0 +1,143 @@
+input[id="icon"] {
+  display: none;
+}
+input[id="icon"] + label {
+  display: none;
+  width: 40px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+input[id="icon"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  border-radius: 30px;
+  background: #000;
+  transition: all 0.35s;
+}
+input[id="icon"] + label span:nth-child(1) {
+  top: 0;
+}
+
+input[id="icon"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input[id="icon"] + label span:nth-child(3) {
+  bottom: 0;
+}
+
+input[id="icon"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+input[id="icon"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+input[id="icon"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+div [id="sidebar"] {
+  display: none;
+  width: 300px;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: fixed;
+  top: 0;
+  right: -300px;
+  z-index: 10000;
+  transition: all 0.35s;
+}
+input[id="icon"]:checked + label + div {
+  right: 0;
+}
+/* 사이드박스안 텍스트 */
+
+div [id="Login_Mobile"] {
+  position: relative;
+  top: 70px;
+  border-top: 2px solid rgba(128, 128, 128, 0.3);
+  border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+  height: 50px;
+  font-size: 30px;
+}
+div [id="Login_Mobile_a"] {
+  position: absolute;
+  text-align: center;
+  transform: translateX(140%);
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+div [id="Logout_Mobile_a"] {
+  position: absolute;
+  text-align: center;
+  transform: translateX(140%);
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  display: none;
+}
+
+div [id="sidebar"] > ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0;
+}
+div [id="sidebar"] > ul > li {
+  list-style: none;
+  line-height: 80px;
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+}
+div [id="sidebar"] > ul > li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+div [id="sidebar"] > ul > li a:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+/* 사이드안 텍스트 끝 */
+@media (min-width: 320px) {
+  div [id="Login"] {
+    font-size: 16px;
+    top: 70px;
+  }
+  div [id="Login_a"] {
+    transform: translateX(310%);
+    top: 8px;
+  }
+  div [id="sidebar"] > ul > li {
+    font-size: 20px;
+  }
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
+}
+@media (max-width: 767px) {
+  input[id="icon"] + label {
+    display: block;
+  }
+  div [id="sidebar"] {
+    display: block;
+  }
+}
+@media (min-width: 320px) {
+}

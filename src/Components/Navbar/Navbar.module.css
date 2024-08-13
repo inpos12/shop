@@ -1,0 +1,144 @@
+h1 {
+  font-size: 40px;
+}
+
+div [id="login"] {
+  display: flex;
+  justify-content: flex-end;
+  text-decoration: none;
+  color: black;
+}
+div [id="logout"] {
+  display: flex;
+  justify-content: flex-end;
+  text-decoration: none;
+  color: black;
+}
+
+.nav {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-family: "Roboto", sans-serif;
+}
+.logo {
+  width: 150px;
+}
+.navbar_logo {
+  width: 100%;
+}
+.navbar_logo img {
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit 표준 X */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor; /* IE 표준 X */
+}
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+.menu a {
+  list-style: none;
+  text-decoration-line: none;
+  color: black;
+  align-items: center;
+}
+.menu .logo {
+  margin-right: 15px;
+}
+.menu .logo h1 {
+  font-size: 40px;
+  font-family: "Playfair Display", serif;
+}
+.menu .logo h1:hover {
+  color: #7e8bec;
+}
+
+.menu ul {
+  display: flex;
+  margin: 0;
+}
+
+.menu ul li {
+  font-size: 16px;
+  font-weight: 400;
+  color: #191919;
+  padding: 0 15px;
+  transition: all 0.2s;
+  margin-left: 30px;
+  list-style: none;
+}
+.menu ul li.active em {
+  color: #7e8bec;
+}
+.menu ul li em:hover {
+  color: #7e8bec;
+}
+.dvs__header__trigger {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .menu ul {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    top: -200px;
+    left: 0;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.8);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.6s;
+  }
+  .menu.active ul {
+    top: 0;
+  }
+  .menu ul li:nth-child(1) {
+    display: block;
+  }
+  .menu ul li em {
+    font-size: 18px;
+    padding: 3px 10px;
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  .dvs__header__trigger {
+    display: block;
+  }
+  div [id="login"] {
+    display: none;
+  }
+  div [id="logout"] {
+    display: none;
+  }
+}
+@media (min-width: 767px) {
+  div [id="login"] {
+    display: block;
+  }
+  div [id="logout"] {
+    display: none;
+  }
+}

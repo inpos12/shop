@@ -1,0 +1,83 @@
+.SignUp_full_box {
+  padding-bottom: 200px;
+  padding-top: 200px;
+  margin: auto;
+}
+
+.SignUp_Container {
+  display: flex;
+  justify-content: center;
+}
+.SignUp_Col {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 192, 0.1);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
+  padding: 80px;
+}
+.SignUp_title h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.SignUp_title {
+  transform: translateY(-80%);
+}
+
+.SignUp_title_2 h3 {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.SignUp_Text_box {
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+}
+.SignUp_Email_input input {
+  width: 100%;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.SignUp_Password_input input {
+  width: 100%;
+  font-size: 20px;
+}
+div [id="SignUpEmail"] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+  background: transparent;
+  background-color: transparent;
+}
+div [id="SignUpPassword"] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+  background: transparent;
+  background-color: transparent;
+}
+div [id="SignUpButton_1"] {
+  outline: none;
+  border: none;
+  color: white;
+  width: 190px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding: 8px;
+  background-color: #664dd1;
+  text-decoration: none;
+}
+
+@media (min-width: 767px) {
+  .SignUp_Text_box {
+    width: 100%;
+  }
+  div [id="SignUpButton_1"] {
+    width: 100%;
+  }
+}

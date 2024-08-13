@@ -1,0 +1,9 @@
+.ImgSize {
+  z-index: 9999;
+  position: fixed;
+  width: 60px;
+  bottom: 0;
+  right: 0;
+  margin-right: 30px;
+  margin-bottom: 50px;
+}

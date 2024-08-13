@@ -1,0 +1,121 @@
+div [id="Section2_title_row"] {
+  text-align: center;
+  margin: 50px 0px;
+}
+
+div [id="Section2_button_row"] {
+  display: flex;
+  margin: 30px auto;
+}
+div [id="Section2_row"] {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.Section2_title {
+  font-weight: 700;
+}
+.Section2_hr:first-child {
+  margin: 0px auto 15px;
+  width: 300px;
+  border-top: 3px solid black;
+}
+.Section2_hr:last-child {
+  margin: 10px auto 0px;
+  width: 300px;
+  border-top: 3px solid black;
+}
+.Section2_col {
+  margin-right: 10px;
+}
+.Section2_col_Last {
+  margin-right: 0px;
+}
+
+.Section2_button {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border: 1px solid gray;
+  font-weight: 600;
+  width: 100px;
+  max-width: 100%;
+  text-align: center;
+  margin-right: 30px;
+  margin-left: -12px;
+  transition: all 0.35s ease-in-out;
+}
+.Section2_button:hover {
+  background-color: rgb(48, 48, 48);
+  color: white;
+}
+
+.Section2_button1 {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border: 1px solid gray;
+  font-weight: 600;
+  width: 150px;
+  max-width: 100%;
+  text-align: center;
+  margin-right: 0;
+  transition: all 0.5s ease-in-out;
+}
+.Section2_button1:hover {
+  background-color: rgb(48, 48, 48);
+  color: white;
+}
+.Section2_img {
+  image-rendering: -moz-crisp-edges; /* firefox */
+  image-rendering: -o-crisp-edges; /* opera */
+  image-rendering: -webkit-optimize-contrast; /* chrome(비표준) */
+  image-rendering: crisp-edges;
+
+  width: 100%;
+  height: 400px;
+  padding-right: 10px;
+  transition: all 0.3s ease-in;
+}
+.Section2_img1 {
+  image-rendering: -moz-crisp-edges; /* firefox */
+  image-rendering: -o-crisp-edges; /* opera */
+  image-rendering: -webkit-optimize-contrast; /* chrome(비표준) */
+  image-rendering: crisp-edges;
+  height: 400px;
+  transition: all 0.3s ease-in;
+}
+
+@media (min-width: 320px) {
+  .Section1_title1 {
+    text-align: left;
+  }
+  .Section2_col {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .Section2_col {
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .Section2_col {
+      display: block;
+    }
+  }
+}
+@media (max-width: 991px) {
+  div [id="Section2_row"] {
+    flex-wrap: wrap;
+  }
+  .Section2_col {
+    padding: 0;
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+  .Section2_img {
+    width: 340px;
+    padding-right: 0px;
+  }
+  div [id="Section2_button_row"] {
+    justify-content: center;
+  }
+}
