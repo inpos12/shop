@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import Item_List from "./item.json";
 import Img_1 from "../GirlCrush/GirlCrush_1_1.gif"; //Girl Crush Look item img_1
 import Img_2 from "../GirlCrush/GirlCrush_1_2.gif"; //Girl Crush Look item img_1
@@ -22,12 +23,12 @@ function Item(props) {
   return (
     <>
       <Col lg={3} md={5} sm={5} xs={5} id="GirlCrush_col">
-        <a href={props.href}>
+        <Link to={props.href}>
           <img
             src={props.imgsrc}
             className={GirlCrush_style.GirlCrush_img}
           ></img>
-        </a>
+        </Link>
         <div className={GirlCrush_style.GirlCrush_title}>
           {props.title_1}
           <br />

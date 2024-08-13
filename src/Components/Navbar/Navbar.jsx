@@ -28,29 +28,29 @@ const NavbarElement = () => {
         <div className={style.container}>
           <div className={style.menu}>
             <div className={style.logo}>
-              <Link to="./">
+              <Link to="/">
                 <img src={Logo} className={style.navbar_logo}></img>
               </Link>
             </div>
             <ul>
               <li>
-                <Link to="./">Home</Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="./Shoes">Shoes</Link>
+                <Link to="/Shoes">Shoes</Link>
               </li>
               <li>
-                <Link to="./GirlCrush/">Girl Crush </Link>
+                <Link to="/GirlCrush/">Girl Crush </Link>
               </li>
               <li>
-                <Link to="./Daily/">Daily</Link>
+                <Link to="/Daily/">Daily</Link>
               </li>
             </ul>
           </div>
-          <Link id="login" to="./Login/">
+          <Link id="login" to="/Login/">
             Login
           </Link>
-          <Link id="logout" to="./" onClick={LogoutButton}>
+          <Link id="logout" to="/" onClick={LogoutButton}>
             Logout
           </Link>
           <Hamburger />

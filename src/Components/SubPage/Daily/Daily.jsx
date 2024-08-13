@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Daily_style from "../Daily/Daily.module.css";
 import Item_List from "./item.json";
+import { Link } from "react-router-dom";
 import Img_1 from "../Daily/Daily_1_1.gif"; //Girl Crush Look item img_1
 import Img_2 from "../Daily/Daily_1_2.gif"; //Girl Crush Look item img_1
 import Img_3 from "../Daily/Daily_1_3.gif"; //Girl Crush Look item img_1
@@ -30,9 +31,9 @@ function Item(props) {
         className={Daily_style.Daily_col_1}
       >
         {/* /Daily/1 */}
-        <a href={props.href}>
+        <Link to={props.href}>
           <img src={props.imgsrc} className={Daily_style.Daily_img}></img>
-        </a>
+        </Link>
 
         <div className={Daily_style.Daily_title}>
           {props.title_1}

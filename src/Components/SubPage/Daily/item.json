@@ -4,83 +4,83 @@
     "title_2": "씨리얼셔츠",
     "price": 63000,
     "color": "White",
-    "href": "/Daily/1"
+    "href": "./1"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "캘리알파카니트",
     "price": 88000,
     "color": "White",
-    "href": "/Daily/2"
+    "href": "./2"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "코코샤가디건",
     "price": 108000,
     "color": "White",
-    "href": "/Daily/3"
+    "href": "./3"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "질샌더뉴슬랙스; 시즌버전",
     "price": 89000,
     "color": "White",
-    "href": "/Daily/4"
+    "href": "./4"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "에르텐션스커트; 롱버전",
     "price": 49000,
     "color": "White",
-    "href": "/Daily/5"
+    "href": "./5"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "매니쉬셔츠",
     "price": 69000,
     "color": "White",
-    "href": "/Daily/6"
+    "href": "./6"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "씨리얼셔츠",
     "price": 63000,
     "color": "White",
-    "href": "/Daily/7"
+    "href": "./7"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "캘리알파카니트",
     "price": 88000,
     "color": "White",
-    "href": "/Daily/8"
+    "href": "./8"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "코코샤가디건",
     "price": 108000,
     "color": "White",
-    "href": "/Daily/9"
+    "href": "./9"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "질샌더뉴슬랙스; 시즌버전",
     "price": 89000,
     "color": "White",
-    "href": "/Daily/10"
+    "href": "./10"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "에르텐션스커트; 롱버전",
     "price": 49000,
     "color": "White",
-    "href": "/Daily/11"
+    "href": "./11"
   },
   {
     "title_1": "[DAILY MADE]",
     "title_2": "매니쉬셔츠",
     "price": 69000,
     "color": "White",
-    "href": "/Daily/12"
+    "href": "./12"
   }
 ]

@@ -28,7 +28,7 @@ function hamburger() {
       </label>
       <div id="sidebar">
         <div id="Login_Mobile">
-          <Link to="./Login">Login</Link>
+          <Link to="/Login">Login</Link>
           <a id="Logout_Mobile_a" href="/" onClick={LogoutButton}>
             LogOut
           </a>

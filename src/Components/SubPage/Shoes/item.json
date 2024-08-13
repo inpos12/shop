@@ -5,65 +5,65 @@
       "title_1": "그리드 배색 키높이 스니커즈",
       "description": "6cm 키높이 신발",
       "price": 43000,
-      "href": "/Shoes/1"
+      "href": "./1"
     },
     {
       "title_1": "로티 배색 스니커즈",
       "description": "4.5cm 키높이 신발",
       "price": 39000,
-      "href": "/Shoes/2"
+      "href": "./2"
     },
     {
       "title_1": "비셀루 스웨이드 스티치 로퍼",
       "price": 52000,
-      "href": "/Shoes/3"
+      "href": "./3"
     },
     {
       "title_1": "하이키 소가죽 독일군 스니커즈",
       "price": 129000,
-      "href": "/Shoes/4"
+      "href": "./4"
     },
     {
       "title_1": "런데이 2type 화이트 스니커즈",
       "price": 34000,
-      "href": "/Shoes/5"
+      "href": "./5"
     },
     {
       "title_1": "알리드 사각코 워커",
       "price": 75000,
-      "href": "/Shoes/6"
+      "href": "./6"
     },
     {
       "title_1": "스티치 라인업 슬립온",
       "price": 34000,
-      "href": "/Shoes/7"
+      "href": "./7"
     },
     {
       "title_1": "제이콥 베이직 로퍼",
       "price": 45000,
-      "href": "/Shoes/8"
+      "href": "./8"
     },
     {
       "title_1": "6cm키높이신발",
       "description": "그리드 배색 키높이 스니커즈",
       "price": 43000,
-      "href": "/Shoes/9"
+      "href": "./9"
     },
     {
       "title_1": "4.5cm키높이신발",
       "description": "로티 배색 스니커즈",
       "price": 39000,
-      "href": "/Shoes/10"
+      "href": "./10"
     },
     {
       "title_1": "비셀루 스웨이드 스티치 로퍼",
       "price": 52000,
-      "href": "/Shoes/11"
+      "href": "./11"
     },
     {
       "title_1": "하이키 소가죽 독일군 스니커즈",
       "price": 129000,
-      "href": "/Shoes/12"
+      "href": "./12"
     }
   ]
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import Item_List from "./item.json";
 import Section_3 from "../Shoes/Item.module.css";
 import Img_1 from "../Shoes/Shoes_2_1.jpg";
@@ -23,9 +24,9 @@ function Item(props) {
   return (
     <>
       <Col lg={3} md={5} sm={5} xs={5} id="Shoes_col">
-        <a href={props.href}>
+        <Link to={props.href}>
           <img src={props.imgsrc} className={Section_3.Shoes_img}></img>
-        </a>
+        </Link>
         <div className={Section_3.Shoes_title}>{props.title}</div>
         <div className={Section_3.Shoes_p}>
           {props.description}
