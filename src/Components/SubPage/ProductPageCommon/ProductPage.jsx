@@ -1,11 +1,11 @@
-import React from "react";
-
+import React, { useState } from "react";
 import $ from "jquery";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import style from "./Item_page.module.css";
 import down_img from "./arrows_down_40386.png";
+
 const DownButton = () => {
   const AmountList = document.getElementById("Amount_list");
 
@@ -15,32 +15,17 @@ const DownButton = () => {
     AmountList.style.display = "none";
   }
 };
-$(document).ready(function () {
-  const Price = $("#Price");
-  const initialPrice = parseInt(Price.text().replace(/[^0-9]/g, ""));
-
-  $(".p1").on("click", function () {
-    $(Price).html(initialPrice.toLocaleString() + "원");
-  });
-  $(".p2").on("click", function () {
-    $(Price).html((initialPrice * 2).toLocaleString() + "원");
-  });
-  $(".p3").on("click", function () {
-    $(Price).html((initialPrice * 3).toLocaleString() + "원");
-  });
-  $(".p4").on("click", function () {
-    $(Price).html((initialPrice * 4).toLocaleString() + "원");
-  });
-  $(".p5").on("click", function () {
-    $(Price).html((initialPrice * 5).toLocaleString() + "원");
-  });
-  $(".p6").on("click", function () {
-    $(Price).html((initialPrice * 6).toLocaleString() + "원");
-  });
-});
 
 function ProductPage(props) {
-  const formattedPrice = props.price.toLocaleString();
+  const initalPrice = props.price;
+  const [amount, setAmount] = useState(1);
+  const [displayPrice, setDisplayPrice] = useState(initalPrice);
+  const handleAmountChange = (newAmount) => {
+    setAmount(newAmount);
+    setDisplayPrice(initalPrice * newAmount);
+  };
+  const formattedPrice = displayPrice.toLocaleString();
+
   return (
     <>
       <Container id="Item_page">
@@ -65,7 +50,7 @@ function ProductPage(props) {
             <div className={style.Item_hr}></div>
             <div className={style.Item_p_Amount}>
               <p className={style.Item_p_Amount_1}>
-                amount : <p id="Amount">&nbsp;1</p>
+                amount : <p id="Amount">&nbsp;{amount}</p>
               </p>
 
               <img
@@ -77,12 +62,11 @@ function ProductPage(props) {
             </div>
             <div className={style.Item_hr}></div>
             <div className={style.Amount_list} id="Amount_list">
-              <p className="p1">1</p>
-              <p className="p2">2</p>
-              <p className="p3">3</p>
-              <p className="p4">4</p>
-              <p className="p5">5</p>
-              <p className="p6">6</p>
+              {[1, 2, 3, 4, 5, 6].map((num) => (
+                <p key={num} onClick={() => handleAmountChange(num)}>
+                  {num}
+                </p>
+              ))}
             </div>
             <div className={style.Item_buy_button_box}>
               <button className={style.Item_buy_button}>구매하기</button>
