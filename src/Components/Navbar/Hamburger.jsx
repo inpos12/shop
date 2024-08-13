@@ -1,8 +1,7 @@
 import React from "react";
 import { getAuth, signOut } from "firebase/auth";
 import "../Navbar/Hamburger.module.css";
-import Logo from "../Navbar/logo.png";
-
+import { Link } from "react-router-dom";
 function LogoutButton() {
   const LoginButton = document.getElementById("Login_Mobile_a");
   const LogoutButton = document.getElementById("Logout_Mobile_a");

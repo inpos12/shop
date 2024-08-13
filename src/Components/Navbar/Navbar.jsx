@@ -1,7 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
-import firebase from "../login/Firebase";
 import { Link } from "react-router-dom";
 import style from "../Navbar/Navbar.module.css";
 import "../Navbar/Navbar.module.css";
