@@ -1,35 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SignUp_style from "./SignUp.module.css";
 
-function LoginPage() {
-  window.location.href = "/Login/";
-}
-
-function SignUpButton() {
-  const email = document.getElementById("SignUpEmail").value;
-  const password = document.getElementById("SignUpPassword").value;
+const SignUp = () => {
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      window.location.href = "/#/Login";
-      alert(`회원가입 성공`);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(`공백이거나 중복되는 이메일입니다.`);
-      // ..
-    });
-}
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const Logout = () => {
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // 회원가입 성공
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        // 회원가입 실패
+        console.error(error);
+      });
+  };
   return (
     <div className={SignUp_style.SignUp_full_box}>
       <Container className={SignUp_style.SignUp_Container}>
@@ -42,26 +36,38 @@ const Logout = () => {
               <h3>회원가입</h3>
             </div>
             <div className={SignUp_style.SignUp_Email_input}>
-              <input type="email" id="SignUpEmail" placeholder="이메일" />
+              <input
+                type="email"
+                id="SignUpEmail"
+                placeholder="이메일"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className={SignUp_style.SignUp_Password_input}>
               <input
                 type="password"
                 id="SignUpPassword"
                 placeholder="비밀번호"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
-          <button onClick={SignUpButton} type="submit" id="SignUpButton_1">
+
+          <button onClick={handleSignUp} type="submit" id="SignUpButton_1">
             회원가입
           </button>
-          <button onClick={LoginPage} type="submit" id="SignUpButton">
-            로그인페이지
-          </button>
+
+          <Link to="../Login">
+            <button type="submit" id="SignUpButton">
+              로그인페이지
+            </button>
+          </Link>
         </Col>
       </Container>
     </div>
   );
 };
 
-export default Logout;
+export default SignUp;

@@ -1,39 +1,44 @@
-import React from "react";
-import { getAuth, signOut } from "firebase/auth";
-import "../Navbar/Hamburger.module.css";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function LogoutButton() {
-  const LoginButton = document.getElementById("Login_Mobile_a");
-  const LogoutButton = document.getElementById("Logout_Mobile_a");
-  const auth = getAuth();
-  signOut(auth)
-    .then(() => {
-      alert(`로그아웃완료`);
-      LoginButton.style.display = "block";
-      LogoutButton.style.display = "none";
-    })
-    .catch((error) => {
-      // An error happened.
-    });
-}
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import "../Navbar/Hamburger.module.css";
 
-function hamburger() {
+const Hamburger = () => {
+  const auth = getAuth();
+  const [uid, setUid] = useState("");
+
+  // useEffect 훅을 사용하여 Firebase 인증 상태 변화 감지
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUid(user.email);
+      } else {
+        setUid("");
+      }
+    });
+  }, []); // 의존성 배열: auth 객체 변화에만 반응
+
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("로그아웃성공");
+    } catch (error) {
+      console.error("로그아웃 실패:", error);
+    }
+  };
+
   return (
     <>
       <input type="checkbox" id="icon"></input>
-      <label for="icon">
+      <label htmlFor="icon">
         <span></span>
         <span></span>
         <span></span>
       </label>
       <div id="sidebar">
-        <div id="Login_Mobile">
-          <Link to="/Login">Login</Link>
-          <a id="Logout_Mobile_a" href="/" onClick={LogoutButton}>
-            LogOut
-          </a>
-        </div>
         <ul>
+          <li>{uid}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -41,18 +46,26 @@ function hamburger() {
             <Link to="/Shoes/">Shoes</Link>
           </li>
           <li>
-            <Link to="/GirlCrush_Look/">Girl Crush</Link>
+            <Link to="/GirlCrush/">Girl Crush</Link>
           </li>
           <li>
-            <Link to="/Daily_Look/">Daily</Link>
+            <Link to="/Daily/">Daily</Link>
           </li>
 
-          <li>
-            <Link to="/Login/">Login</Link>
-          </li>
+          {uid ? (
+            <li>
+              <Link to="/" onClick={handleLogout}>
+                Logout
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/Login/">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
     </>
   );
-}
-export default hamburger;
+};
+export default Hamburger;

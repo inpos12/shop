@@ -133,12 +133,15 @@ div [id="logout"] {
   div [id="logout"] {
     display: none;
   }
+  div [id="email"] {
+    display: none;
+  }
 }
 @media (min-width: 767px) {
   div [id="login"] {
     display: block;
   }
   div [id="logout"] {
-    display: none;
+    display: block;
   }
 }

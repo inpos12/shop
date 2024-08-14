@@ -1,4 +1,5 @@
 import React from "react";
+import app from "./Components/database_test/Firebase";
 import "../src/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // 네비게이션

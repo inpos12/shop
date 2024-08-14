@@ -64,7 +64,9 @@ input[id="icon"]:checked + label + div {
 
 div [id="Login_Mobile"] {
   position: relative;
-  top: 70px;
+  top: 0;
+  width: 100%;
+  text-align: center;
   border-top: 2px solid rgba(128, 128, 128, 0.3);
   border-bottom: 2px solid rgba(128, 128, 128, 0.3);
   height: 50px;

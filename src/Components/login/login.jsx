@@ -1,43 +1,31 @@
-import React from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Col from "react-bootstrap/Col";
 import Login_style from "./login.module.css";
 
-function SignUpButton() {
-  window.location.href = "/SignUp/";
-}
-function LoginButton() {
-  const email = document.getElementById("SignUpEmail").value;
-  const password = document.getElementById("SignUpPassword").value;
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      console.log(userCredential);
-      const user = userCredential.user;
-      window.location.href = "/#/";
-      if (matchMedia("screen and (min-width: 768px)").matches) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("logout").style.display = "block";
-        alert(`로그인완료`);
-      } else {
-        document.getElementById("Login_Mobile_a").style.display = "none";
-        document.getElementById("Logout_Mobile_a").style.display = "block";
-        alert(`로그인완료`);
-      }
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(`비밀번호 혹은 이메일을 확인해주세요`);
-    });
-}
-
 // 로그인버튼 끝
-const login = () => {
+const Login = () => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // 로그인성공
+        const user = userCredential.user;
+        navigate("../");
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        //회원가입실패
+        console.log(error);
+      });
+  };
+
   return (
     <div className={Login_style.Login_full_box}>
       <Container className={Login_style.Login_Container}>
@@ -50,26 +38,36 @@ const login = () => {
               <h3>로그인</h3>
             </div>
             <div className={Login_style.Login_Email_input}>
-              <input type="email" id="SignUpEmail" placeholder="이메일" />
+              <input
+                type="email"
+                id="SignUpEmail"
+                placeholder="이메일"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className={Login_style.Login_Password_input}>
               <input
                 type="password"
                 id="SignUpPassword"
                 placeholder="비밀번호"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
-          <button onClick={LoginButton} type="submit" id="LoginButton">
+          <button type="submit" id="LoginButton" onClick={handleLogin}>
             로그인
           </button>
-          <button onClick={SignUpButton} type="submit" id="SignUpButton">
-            회원가입
-          </button>
+          <Link to="../SignUp">
+            <button type="submit" id="SignUpButton">
+              회원가입
+            </button>
+          </Link>
         </Col>
       </Container>
     </div>
   );
 };
 
-export default login;
+export default Login;

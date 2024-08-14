@@ -1,27 +1,42 @@
-import React from "react";
-import { getAuth, signOut } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { Link } from "react-router-dom";
 import style from "../Navbar/Navbar.module.css";
 import "../Navbar/Navbar.module.css";
 import Hamburger from "./Hamburger";
 import Logo from "../Navbar/logo.png";
 
-function LogoutButton() {
-  const LoginButton = document.getElementById("login");
-  const LogoutButton = document.getElementById("logout");
-  const auth = getAuth();
-  signOut(auth)
-    .then(() => {
-      LogoutButton.style.display = "none";
-      LoginButton.style.display = "block";
-      alert(`로그아웃완료`);
-    })
-    .catch((error) => {
-      // An error happened.
-    });
-}
+const Login = {
+  display: "flex",
+  gap: "20px",
+  margin: "0",
+};
 
 const NavbarElement = () => {
+  const auth = getAuth();
+  const [uid, setUid] = useState("");
+
+  // useEffect 훅을 사용하여 Firebase 인증 상태 변화 감지
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUid(user.email);
+      } else {
+        setUid("");
+      }
+    });
+  }, []); // 의존성 배열: auth 객체 변화에만 반응
+
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("로그아웃성공");
+    } catch (error) {
+      console.error("로그아웃 실패:", error);
+    }
+  };
+
   return (
     <div id="navbar">
       <div className={style.nav}>
@@ -47,12 +62,19 @@ const NavbarElement = () => {
               </li>
             </ul>
           </div>
-          <Link id="login" to="/Login/">
-            Login
-          </Link>
-          <Link id="logout" to="/" onClick={LogoutButton}>
-            Logout
-          </Link>
+          <ul style={Login}>
+            <div id="email">{uid}</div>
+            {uid ? (
+              <Link id="logout" to="/" onClick={handleLogout}>
+                Logout
+              </Link>
+            ) : (
+              <Link id="login" to="/Login/">
+                Login
+              </Link>
+            )}
+          </ul>
+
           <Hamburger />
         </div>
       </div>
