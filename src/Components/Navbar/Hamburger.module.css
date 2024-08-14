@@ -115,6 +115,11 @@ div [id="sidebar"] > ul > li a {
 div [id="sidebar"] > ul > li a:hover {
   color: rgba(0, 0, 0, 0.6);
 }
+
+div [id="Login_Logout"] {
+  color: black;
+  font-weight: 800;
+}
 /* 사이드안 텍스트 끝 */
 @media (min-width: 320px) {
   div [id="Login"] {

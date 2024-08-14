@@ -39,6 +39,19 @@ const Hamburger = () => {
       <div id="sidebar">
         <ul>
           <li>{uid}</li>
+          {uid ? (
+            <li>
+              <Link to="/" id="Login_Logout" onClick={handleLogout}>
+                Logout
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/Login/" id="Login_Logout">
+                Login
+              </Link>
+            </li>
+          )}
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -51,18 +64,6 @@ const Hamburger = () => {
           <li>
             <Link to="/Daily/">Daily</Link>
           </li>
-
-          {uid ? (
-            <li>
-              <Link to="/" onClick={handleLogout}>
-                Logout
-              </Link>
-            </li>
-          ) : (
-            <li>
-              <Link to="/Login/">Login</Link>
-            </li>
-          )}
         </ul>
       </div>
     </>
