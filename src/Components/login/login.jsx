@@ -15,14 +15,14 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // 로그인성공
-        const user = userCredential.user;
+        // const user = userCredential.user;
         navigate("../");
-        console.log(user);
+        alert("로그인성공");
         // ...
       })
-      .catch((error) => {
-        //회원가입실패
-        console.log(error);
+      .catch(() => {
+        //로그인실패
+        alert("로그인실패");
       });
   };
 

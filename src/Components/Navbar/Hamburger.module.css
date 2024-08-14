@@ -32,17 +32,6 @@ input[id="icon"] + label span:nth-child(3) {
   bottom: 0;
 }
 
-input[id="icon"]:checked + label span:nth-child(1) {
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-}
-input[id="icon"]:checked + label span:nth-child(2) {
-  opacity: 0;
-}
-input[id="icon"]:checked + label span:nth-child(3) {
-  bottom: 50%;
-  transform: translateY(50%) rotate(-45deg);
-}
 div [id="sidebar"] {
   display: none;
   width: 300px;
@@ -57,9 +46,7 @@ div [id="sidebar"] {
   z-index: 10000;
   transition: all 0.35s;
 }
-input[id="icon"]:checked + label + div {
-  right: 0;
-}
+
 /* 사이드박스안 텍스트 */
 
 div [id="Login_Mobile"] {

@@ -6,7 +6,10 @@ import "../Navbar/Hamburger.module.css";
 const Hamburger = () => {
   const auth = getAuth();
   const [uid, setUid] = useState("");
-
+  const [sidebar, setSidebar] = useState(false);
+  const handleHamburgr = () => {
+    setSidebar(!sidebar);
+  };
   // useEffect 훅을 사용하여 Firebase 인증 상태 변화 감지
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -17,26 +20,39 @@ const Hamburger = () => {
       }
     });
   }, []); // 의존성 배열: auth 객체 변화에만 반응
+  const handleMobileMenu = () => {
+    setSidebar(!sidebar);
+  };
 
   const handleLogout = async () => {
     const auth = getAuth();
     try {
       await signOut(auth);
-      console.log("로그아웃성공");
-    } catch (error) {
-      console.error("로그아웃 실패:", error);
+      alert("로그아웃성공");
+    } catch {
+      alert("로그아웃 실패");
     }
   };
 
   return (
     <>
-      <input type="checkbox" id="icon"></input>
+      <input type="checkbox" id="icon" onClick={handleHamburgr}></input>
       <label htmlFor="icon">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span
+          style={{
+            top: !sidebar ? "0" : "50%",
+            transform: sidebar ? "translateY(-50%) rotate(45deg)" : "none",
+          }}
+        ></span>
+        <span style={{ opacity: !sidebar ? "1" : "0" }}></span>
+        <span
+          style={{
+            bottom: !sidebar ? "0" : "50%",
+            transform: sidebar ? "translateY(50%) rotate(-45deg)" : "none",
+          }}
+        ></span>
       </label>
-      <div id="sidebar">
+      <div id="sidebar" style={{ right: sidebar ? "0px" : "-300px" }}>
         <ul>
           <li>{uid}</li>
           {uid ? (
@@ -47,22 +63,30 @@ const Hamburger = () => {
             </li>
           ) : (
             <li>
-              <Link to="/Login/" id="Login_Logout">
+              <Link to="/Login/" id="Login_Logout" onClick={handleMobileMenu}>
                 Login
               </Link>
             </li>
           )}
-          <li>
-            <Link to="/">Home</Link>
+          <li id="test">
+            <Link to="/" onClick={handleMobileMenu}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/Shoes/">Shoes</Link>
+            <Link to="/Shoes/" onClick={handleMobileMenu}>
+              Shoes
+            </Link>
           </li>
           <li>
-            <Link to="/GirlCrush/">Girl Crush</Link>
+            <Link to="/GirlCrush/" onClick={handleMobileMenu}>
+              Girl Crush
+            </Link>
           </li>
           <li>
-            <Link to="/Daily/">Daily</Link>
+            <Link to="/Daily/" onClick={handleMobileMenu}>
+              Daily
+            </Link>
           </li>
         </ul>
       </div>

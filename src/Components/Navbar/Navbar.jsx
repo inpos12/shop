@@ -31,9 +31,9 @@ const NavbarElement = () => {
     const auth = getAuth();
     try {
       await signOut(auth);
-      console.log("로그아웃성공");
-    } catch (error) {
-      console.error("로그아웃 실패:", error);
+      alert("로그아웃성공");
+    } catch {
+      alert("로그아웃 실패");
     }
   };
 

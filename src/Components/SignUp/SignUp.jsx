@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import Container from "react-bootstrap/Container";
@@ -8,6 +8,7 @@ import SignUp_style from "./SignUp.module.css";
 
 const SignUp = () => {
   const auth = getAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,11 +18,12 @@ const SignUp = () => {
       .then((userCredential) => {
         // 회원가입 성공
         const user = userCredential.user;
-        console.log(user);
+        alert("회원가입성공");
+        navigate("../");
       })
-      .catch((error) => {
+      .catch(() => {
         // 회원가입 실패
-        console.error(error);
+        alert("회원가입실패");
       });
   };
   return (
