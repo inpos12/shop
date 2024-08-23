@@ -1,17 +1,30 @@
-import React from "react";
-import img_11 from "./Daily_1_11.gif";
-import Item_List from "../../item.json";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import img_1 from "./Daily_1_11.gif";
+
 import ProductPage from "../../../ProductPageCommon/ProductPage";
+import db from "../../../../database_test/Firebase";
 
 const Daily_11_page = () => {
+  const [dailyData, setDailyData] = useState("");
+  useEffect(() => {
+    async function Daily_11() {
+      // 씨리얼셔츠
+      const DailyRef = doc(db, "Daily", "에르텐션스커트; 롱버전");
+      const DailySnap = await getDoc(DailyRef);
+      setDailyData(DailySnap.data());
+    }
+    Daily_11();
+  }, []);
+
   return (
     <>
       <ProductPage
-        imgsrc={img_11}
-        title_1={Item_List[10].title_1}
-        title_2={Item_List[10].title_2}
-        price={Item_List[10].price}
-        color={Item_List[10].color}
+        imgsrc={img_1}
+        title_1={dailyData.description}
+        title_2={dailyData.name}
+        price={dailyData.price}
+        color={dailyData.size}
       />
     </>
   );

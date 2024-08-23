@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-
-import { setDoc, doc } from "firebase/firestore";
-
+import { setDoc, doc, collection, getDocs } from "firebase/firestore";
 import db from "./Components/database_test/Firebase";
 
 const Container = styled.div`
@@ -56,8 +54,22 @@ const Admin = () => {
   const [dataHref, setDataHref] = useState("");
   const [dataDescription, setDataDescription] = useState("");
   const [dataSize, setDataSize] = useState("");
-  const [dataPrice, setDataPrice] = useState("");
+  const [dataPrice, setDataPrice] = useState();
   const [collectionId, setCollectionId] = useState("");
+  const [dataAll, setDataAll] = useState([]);
+  const [dataPrice2, setDataPrice2] = useState([]);
+
+  useEffect(() => {
+    async function fetchDocuments() {
+      const querySnapshot = await getDocs(collection(db, "Daily"));
+      const docIds = querySnapshot.docs.map((doc) => doc.id);
+      setDataAll(docIds);
+      const docData = querySnapshot.docs.map((doc) => doc.data().price);
+      setDataPrice2(docData);
+    }
+
+    fetchDocuments();
+  }, []);
   const addShoesData = async () => {
     // 'Shoes' 컬렉션에 새 문서 추가
     const docRef = doc(db, collectionId, dataName); // docId를 문자열로 설정
@@ -82,15 +94,17 @@ const Admin = () => {
         if (user.email === process.env.REACT_APP_ADMIN_ACCOUNT) {
           setIsAllowed(true);
         } else {
+          window.location.replace("/shop");
           setIsAllowed(false);
         }
       } else {
+        window.location.replace("/shop");
         setUid(null);
         setIsAllowed(false);
-        console.log("로그아웃되있음");
       }
     });
   }, []);
+
   const handleaddData = () => {
     if (isAllowed) {
       addShoesData(dataName, dataHref, dataDescription, dataSize, dataPrice);
@@ -99,76 +113,90 @@ const Admin = () => {
       } else {
         alert("데이터추가성공");
       }
-    } else {
-      alert("어드민계정으로 로그인 해주세요");
     }
   };
 
   return (
-    <Container>
-      <Row>
-        <p>{uid}</p>
-        <InputBox>
-          <P>CollectionID</P>
-          <input
-            placeholder="CollectionID"
-            type="text"
-            value={collectionId}
-            onChange={(e) => setCollectionId(e.target.value)}
-          />
-        </InputBox>
-        <InputBox>
-          <P>DataName</P>
-          <input
-            placeholder="DataName"
-            type="text"
-            value={dataName}
-            onChange={(e) => setDataName(e.target.value)}
-          />
-        </InputBox>
-        <InputBox>
-          <P>dataHref</P>
-          <input
-            placeholder="dataHref"
-            type="text"
-            value={dataHref}
-            onChange={(e) => setDataHref(e.target.value)}
-          />
-        </InputBox>
-        <InputBox>
-          <P>dataDescription</P>
-          <input
-            placeholder="dataDescription"
-            type="text"
-            value={dataDescription}
-            onChange={(e) => setDataDescription(e.target.value)}
-          />
-        </InputBox>
-        <InputBox>
-          <P>dataSize</P>
-          <input
-            placeholder="dataSize"
-            type="text"
-            value={dataSize}
-            onChange={(e) => setDataSize(e.target.value)}
-          />
-        </InputBox>
-        <InputBox>
-          <P>dataPrice</P>
-          <input
-            placeholder="dataPrice"
-            type="text"
-            value={dataPrice}
-            onChange={(e) => setDataPrice(e.target.value)}
-          />
-        </InputBox>
-        <ButtonRow>
-          <Button onClick={handleaddData} disabled={!isAllowed}>
-            데이터추가
-          </Button>
-        </ButtonRow>
-      </Row>
-    </Container>
+    <>
+      <Container>
+        <Row>
+          <p>{uid}</p>
+          <InputBox>
+            <P>CollectionID</P>
+            <input
+              placeholder="CollectionID"
+              type="text"
+              value={collectionId}
+              onChange={(e) => setCollectionId(e.target.value)}
+            />
+          </InputBox>
+          <InputBox>
+            <P>DataName</P>
+            <input
+              placeholder="DataName"
+              type="text"
+              value={dataName}
+              onChange={(e) => setDataName(e.target.value)}
+            />
+          </InputBox>
+          <InputBox>
+            <P>dataHref</P>
+            <input
+              placeholder="dataHref"
+              type="text"
+              value={dataHref}
+              onChange={(e) => setDataHref(e.target.value)}
+            />
+          </InputBox>
+          <InputBox>
+            <P>dataDescription</P>
+            <input
+              placeholder="dataDescription"
+              type="text"
+              value={dataDescription}
+              onChange={(e) => setDataDescription(e.target.value)}
+            />
+          </InputBox>
+          <InputBox>
+            <P>dataSize</P>
+            <input
+              placeholder="dataSize"
+              type="text"
+              value={dataSize}
+              onChange={(e) => setDataSize(e.target.value)}
+            />
+          </InputBox>
+          <InputBox>
+            <P>dataPrice</P>
+            <input
+              placeholder="dataPrice"
+              type="number"
+              value={dataPrice}
+              onChange={(e) => setDataPrice(Number(e.target.value))}
+            />
+          </InputBox>
+          <ButtonRow>
+            <Button onClick={handleaddData} disabled={!isAllowed}>
+              데이터추가
+            </Button>
+          </ButtonRow>
+        </Row>
+      </Container>
+      <Container>
+        <Row style={{ flexDirection: "row" }}>
+          <ul>
+            {dataAll.map((id) => (
+              <li key={id}>{id}</li>
+            ))}
+          </ul>
+          <ul>
+            {dataPrice2.map((id) => (
+              <li key={id}>{id}</li>
+            ))}
+          </ul>
+        </Row>
+      </Container>
+    </>
   );
 };
 export default Admin;
