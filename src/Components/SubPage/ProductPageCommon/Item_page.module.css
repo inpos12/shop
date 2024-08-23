@@ -40,6 +40,7 @@ div [id="Item_p"] {
 .Item_p_Amount {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 .Item_p_Amount_1 {
   display: flex;
@@ -52,6 +53,7 @@ div [id="Item_p"] {
 .Item_p_color {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 .Item_p_color_1 {
   display: flex;

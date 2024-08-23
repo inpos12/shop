@@ -1,15 +1,28 @@
-import React from "react";
-import img_7 from "./Shoes_2_7.jpg";
-import Item_List from "../../item.json";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import img_1 from "./Shoes_2_7.jpg";
+
 import ProductPage from "../../../ProductPageCommon/ProductPage";
+import db from "../../../../database_test/Firebase";
 
 const Shoes_7_page = () => {
+  const [shoesData_1, setShoesData_1] = useState("");
+  useEffect(() => {
+    async function Shoes_1() {
+      // 스티치 라인업 슬립온
+      const ShoesRef = doc(db, "Shoes", "스티치 라인업 슬립온");
+      const ShoesSnap = await getDoc(ShoesRef);
+      setShoesData_1(ShoesSnap.data());
+    }
+    Shoes_1();
+  }, []);
+
   return (
     <>
       <ProductPage
-        imgsrc={img_7}
-        title_1={Item_List.Shoes_items[6].title}
-        price={Item_List.Shoes_items[6].price}
+        imgsrc={img_1}
+        title_1={shoesData_1.name}
+        price={shoesData_1.price}
       />
     </>
   );

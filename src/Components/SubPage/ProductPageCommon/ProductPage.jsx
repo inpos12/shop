@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -20,11 +20,19 @@ function ProductPage(props) {
   const initalPrice = props.price;
   const [amount, setAmount] = useState(1);
   const [displayPrice, setDisplayPrice] = useState(initalPrice);
+  useEffect(() => {
+    setDisplayPrice(
+      typeof initalPrice === "number"
+        ? initalPrice.toLocaleString()
+        : "가격정보없음"
+    );
+    console.log(initalPrice);
+  }, [initalPrice]);
+
   const handleAmountChange = (newAmount) => {
     setAmount(newAmount);
-    setDisplayPrice(initalPrice * newAmount);
+    setDisplayPrice((initalPrice * newAmount).toLocaleString());
   };
-  const formattedPrice = displayPrice.toLocaleString();
 
   return (
     <>
@@ -39,20 +47,18 @@ function ProductPage(props) {
               <h3>{props.title_2}</h3>
             </div>
             <div className={style.Item_p_price}>
-              <h2 id="Price">{formattedPrice}원</h2>
+              <h2 id="Price">{displayPrice}원</h2>
             </div>
             <div className={style.Item_p_color}>
               <p className={style.Item_p_color_1}>
-                Color : <p>&nbsp; {props.color}</p>
+                Color : &nbsp; {props.color}
               </p>
-              <p> z</p>
+
+              <p>z</p>
             </div>
             <div className={style.Item_hr}></div>
             <div className={style.Item_p_Amount}>
-              <p className={style.Item_p_Amount_1}>
-                amount : <p id="Amount">&nbsp;{amount}</p>
-              </p>
-
+              <p className={style.Item_p_Amount_1}>Amount : {amount} </p>
               <img
                 onClick={DownButton}
                 src={down_img}

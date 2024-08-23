@@ -1,5 +1,6 @@
 import React from "react";
-import app from "./Components/database_test/Firebase";
+
+import db from "./Components/database_test/Firebase";
 import "../src/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // 네비게이션
@@ -56,6 +57,9 @@ import Daily_item_12 from "./Components/SubPage/Daily/ProductPage/Daily_12_page/
 import Login from "../src/Components/Screens/Login";
 // 회원가입
 import SignUp from "../src/Components/Screens/SignUp";
+//Admin
+import AdminPage from "./Components/Screens/Admin";
+
 const App = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -108,6 +112,7 @@ const App = () => {
         <Route path="/Daily/12" element={<Daily_item_12 />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Admin" element={<AdminPage />} />
       </Routes>
       {/* 푸터 */}
       <Footer />
