@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/shop/static/css/main.2e4015a6.css",
-    "main.js": "/shop/static/js/main.fc283f93.js",
+    "main.css": "/shop/static/css/main.01451bf8.css",
+    "main.js": "/shop/static/js/main.3ca9e00f.js",
     "static/js/787.4920683d.chunk.js": "/shop/static/js/787.4920683d.chunk.js",
     "static/media/a_pc_ver_2.png": "/shop/static/media/a_pc_ver_2.360fdf4f34369a238330.png",
     "static/media/section2_4.jpg": "/shop/static/media/section2_4.3032a343c5a96817e547.jpg",
@@ -67,12 +67,12 @@
     "static/media/pngwing.com.png": "/shop/static/media/pngwing.com.9d8c77db3ec1788580ce.png",
     "static/media/logo.png": "/shop/static/media/logo.47c8dc35928fa32ad866.png",
     "index.html": "/shop/index.html",
-    "main.2e4015a6.css.map": "/shop/static/css/main.2e4015a6.css.map",
-    "main.fc283f93.js.map": "/shop/static/js/main.fc283f93.js.map",
+    "main.01451bf8.css.map": "/shop/static/css/main.01451bf8.css.map",
+    "main.3ca9e00f.js.map": "/shop/static/js/main.3ca9e00f.js.map",
     "787.4920683d.chunk.js.map": "/shop/static/js/787.4920683d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e4015a6.css",
-    "static/js/main.fc283f93.js"
+    "static/css/main.01451bf8.css",
+    "static/js/main.3ca9e00f.js"
   ]
 }
