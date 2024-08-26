@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { setDoc, doc, collection, getDocs } from "firebase/firestore";
+import {
+  updateDoc,
+  setDoc,
+  doc,
+  collection,
+  getDocs,
+} from "firebase/firestore";
 import db from "./Components/database_test/Firebase";
 
 const Container = styled.div`
@@ -48,30 +54,66 @@ const Button = styled.button`
   padding: 8px;
   background-color: #664dd1;
 `;
+const Select = styled.select`
+  width: 50%;
+`;
+const Input = styled.input`
+  width: 50%;
+`;
 
 const Admin = () => {
+  // 데이터 수정
+  //어드민로그인체크
+  const [isAllowed, setIsAllowed] = useState(false);
+  const [uid, setUid] = useState();
+  //데이터추가
+  const [collectionId, setCollectionId] = useState("");
   const [dataName, setDataName] = useState("");
   const [dataHref, setDataHref] = useState("");
   const [dataDescription, setDataDescription] = useState("");
   const [dataSize, setDataSize] = useState("");
-  const [dataPrice, setDataPrice] = useState();
-  const [collectionId, setCollectionId] = useState("");
-  const [dataAll, setDataAll] = useState([]);
-  const [dataPrice2, setDataPrice2] = useState([]);
+  const [dataPrice, setDataPrice] = useState(0);
+  // 데이터 수정
+  const [dataShoesID, setDataShoesID] = useState([]);
+  const [dataDailyID, setDataDailyID] = useState([]);
+  const [dataGirlCrushID, setDataGirlCrushID] = useState([]);
+  const [changeShoesPrice, setChangeShoesPrice] = useState(0);
+  const [changeDailyPrice, setChangeDailyPrice] = useState(0);
+  const [changeGirlCrushPrice, setChangeGirlCrushPrice] = useState(0);
 
   useEffect(() => {
-    async function fetchDocuments() {
-      const querySnapshot = await getDocs(collection(db, "Daily"));
-      const docIds = querySnapshot.docs.map((doc) => doc.id);
-      setDataAll(docIds);
-      const docData = querySnapshot.docs.map((doc) => doc.data().price);
-      setDataPrice2(docData);
+    //어드민로그인체크
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // 관리가계정O
+        setUid(user.email);
+        if (user.email === process.env.REACT_APP_ADMIN_ACCOUNT) {
+          setIsAllowed(true);
+          // 관리자계정X
+        } else {
+          alert("관리자계정으로 로그인해주세요");
+          window.location.replace("/shop");
+          setIsAllowed(false);
+        }
+      } else {
+        window.location.replace("/shop");
+        alert("관리자계정으로 로그인해주세요");
+        setIsAllowed(false);
+      }
+    });
+    //    컬렉션 ID 나열
+    async function datalist(collectionID, setID) {
+      const Colleciontlink = await getDocs(collection(db, collectionID));
+      const dataID = Colleciontlink.docs.map((doc) => doc.id);
+      setID(dataID);
     }
-
-    fetchDocuments();
-  }, []);
+    datalist("Shoes", setDataShoesID);
+    datalist("Daily", setDataDailyID);
+    datalist("GirlCrush", setDataGirlCrushID);
+  }, [setUid]); //이메일이 변경될때마다 리랜더링
+  // 데이터추가 input의 TEXT를 가져옴
   const addShoesData = async () => {
-    // 'Shoes' 컬렉션에 새 문서 추가
     const docRef = doc(db, collectionId, dataName); // docId를 문자열로 설정
     await setDoc(docRef, {
       name: dataName,
@@ -81,46 +123,44 @@ const Admin = () => {
       price: dataPrice,
     });
   };
-
-  const [isAllowed, setIsAllowed] = useState(false);
-  const [uid, setUid] = useState();
-  const auth = getAuth();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // 로그인이된경우
-        setUid(user.email);
-        if (user.email === process.env.REACT_APP_ADMIN_ACCOUNT) {
-          setIsAllowed(true);
-        } else {
-          window.location.replace("/shop");
-          setIsAllowed(false);
-        }
-      } else {
-        window.location.replace("/shop");
-        setUid(null);
-        setIsAllowed(false);
-      }
-    });
-  }, []);
-
-  const handleaddData = () => {
+  // 데이터 추가 버튼
+  function handleAddDataButton() {
     if (isAllowed) {
-      addShoesData(dataName, dataHref, dataDescription, dataSize, dataPrice);
+      addShoesData();
       if (dataName === "") {
         alert("데이터추가실패");
       } else {
         alert("데이터추가성공");
       }
     }
-  };
+  }
+  // 데이터수정
+  const selectShoesElement = document.getElementById("ShoesID");
+  const selectDailyElement = document.getElementById("DailyID");
+  const selectGirlCrushElement = document.getElementById("GirlCrushID");
+  async function handleChangeDataButton(elementID, collectionID, Price) {
+    const selectElementValue = elementID.value; // value =dataid
+    const changePrice = doc(db, collectionID, selectElementValue);
+    if (isAllowed) {
+      await updateDoc(changePrice, {
+        price: Price,
+      });
+      alert(
+        selectElementValue + "의 가격을" + Price + "원으로 변경하엿습니다."
+      );
+    } else {
+      alert("관리자 계정으로 로그인 해주세요");
+    }
+
+    if (Price === null) {
+      alert("가격을 설정해주세요");
+    }
+  }
 
   return (
     <>
       <Container>
         <Row>
-          <p>{uid}</p>
           <InputBox>
             <P>CollectionID</P>
             <input
@@ -170,30 +210,124 @@ const Admin = () => {
             <P>dataPrice</P>
             <input
               placeholder="dataPrice"
-              type="number"
+              type="text"
               value={dataPrice}
               onChange={(e) => setDataPrice(Number(e.target.value))}
             />
           </InputBox>
           <ButtonRow>
-            <Button onClick={handleaddData} disabled={!isAllowed}>
+            <Button onClick={handleAddDataButton} disabled={!isAllowed}>
               데이터추가
             </Button>
           </ButtonRow>
         </Row>
       </Container>
       <Container>
-        <Row style={{ flexDirection: "row" }}>
-          <ul>
-            {dataAll.map((id) => (
-              <li key={id}>{id}</li>
-            ))}
-          </ul>
-          <ul>
-            {dataPrice2.map((id) => (
-              <li key={id}>{id}</li>
-            ))}
-          </ul>
+        <Row>
+          <ButtonRow>SHOES</ButtonRow>
+          <InputBox>
+            <P>DataName</P>
+            <Select name="type" id="ShoesID">
+              {dataShoesID.map((data) => (
+                <option key={data} value={data}>
+                  {data}
+                </option>
+              ))}
+            </Select>
+          </InputBox>
+          <InputBox>
+            <P>Price</P>
+            <Input
+              value={changeShoesPrice}
+              placeholder="ChangePrice"
+              type="text"
+              onChange={(e) => setChangeShoesPrice(Number(e.target.value))}
+            />
+          </InputBox>
+          <ButtonRow>
+            <Button
+              onClick={() =>
+                handleChangeDataButton(
+                  selectShoesElement,
+                  "Shoes",
+                  changeShoesPrice
+                )
+              }
+              disabled={!isAllowed}
+            >
+              가격변경
+            </Button>
+          </ButtonRow>
+          {/* Daily */}
+          <ButtonRow>DAILY</ButtonRow>
+          <InputBox>
+            <P>DataName</P>
+            <Select name="type" id="DailyID">
+              {dataDailyID.map((data) => (
+                <option key={data} value={data}>
+                  {data}
+                </option>
+              ))}
+            </Select>
+          </InputBox>
+          <InputBox>
+            <P>Price</P>
+            <Input
+              value={changeDailyPrice}
+              placeholder="ChangePrice"
+              type="text"
+              onChange={(e) => setChangeDailyPrice(Number(e.target.value))}
+            />
+          </InputBox>
+          <ButtonRow>
+            <Button
+              onClick={() =>
+                handleChangeDataButton(
+                  selectDailyElement,
+                  "Daily",
+                  changeDailyPrice
+                )
+              }
+              disabled={!isAllowed}
+            >
+              가격변경
+            </Button>
+          </ButtonRow>
+          {/* GIRLCRUSH */}
+          <ButtonRow>GIRCRUSH</ButtonRow>
+          <InputBox>
+            <P>DataName</P>
+            <Select name="type" id="GirlCrushID">
+              {dataGirlCrushID.map((data) => (
+                <option key={data} value={data}>
+                  {data}
+                </option>
+              ))}
+            </Select>
+          </InputBox>
+          <InputBox>
+            <P>Price</P>
+            <Input
+              value={changeGirlCrushPrice}
+              placeholder="ChangePrice"
+              type="text"
+              onChange={(e) => setChangeGirlCrushPrice(Number(e.target.value))}
+            />
+          </InputBox>
+          <ButtonRow>
+            <Button
+              onClick={() =>
+                handleChangeDataButton(
+                  selectGirlCrushElement,
+                  "GirlCrush",
+                  changeGirlCrushPrice
+                )
+              }
+              disabled={!isAllowed}
+            >
+              가격변경
+            </Button>
+          </ButtonRow>
         </Row>
       </Container>
     </>
