@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/shop/static/css/main.01451bf8.css",
-    "main.js": "/shop/static/js/main.6ee3101f.js",
-    "static/js/787.4920683d.chunk.js": "/shop/static/js/787.4920683d.chunk.js",
+    "main.css": "/shop/static/css/main.4f766e16.css",
+    "main.js": "/shop/static/js/main.1b48e87c.js",
+    "static/js/27.f50dbb28.chunk.js": "/shop/static/js/27.f50dbb28.chunk.js",
     "static/media/a_pc_ver_2.png": "/shop/static/media/a_pc_ver_2.360fdf4f34369a238330.png",
     "static/media/section2_4.jpg": "/shop/static/media/section2_4.3032a343c5a96817e547.jpg",
     "static/media/a_pc_ver_3.png": "/shop/static/media/a_pc_ver_3.c9c55990f300a5ced676.png",
@@ -66,13 +66,10 @@
     "static/media/Shoes_2_6.jpg": "/shop/static/media/Shoes_2_6.bf4fcb266f16c6e8034d.jpg",
     "static/media/pngwing.com.png": "/shop/static/media/pngwing.com.9d8c77db3ec1788580ce.png",
     "static/media/logo.png": "/shop/static/media/logo.47c8dc35928fa32ad866.png",
-    "index.html": "/shop/index.html",
-    "main.01451bf8.css.map": "/shop/static/css/main.01451bf8.css.map",
-    "main.6ee3101f.js.map": "/shop/static/js/main.6ee3101f.js.map",
-    "787.4920683d.chunk.js.map": "/shop/static/js/787.4920683d.chunk.js.map"
+    "index.html": "/shop/index.html"
   },
   "entrypoints": [
-    "static/css/main.01451bf8.css",
-    "static/js/main.6ee3101f.js"
+    "static/css/main.4f766e16.css",
+    "static/js/main.1b48e87c.js"
   ]
 }
