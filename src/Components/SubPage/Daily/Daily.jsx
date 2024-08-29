@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Daily_style from "../Daily/Daily.module.css";
-import Item_List from "./item.json";
+
 import { Link } from "react-router-dom";
 import Img_1 from "../Daily/Daily_1_1.gif"; //Girl Crush Look item img_1
 import Img_2 from "../Daily/Daily_1_2.gif"; //Girl Crush Look item img_1
@@ -19,17 +19,14 @@ import Img_9 from "../Daily/Daily_1_3.gif"; //Girl Crush Look item img_1
 import Img_10 from "../Daily/Daily_1_4.gif"; //Girl Crush Look item img_1
 import Img_11 from "../Daily/Daily_1_5.gif"; //Girl Crush Look item img_1
 import Img_12 from "../Daily/Daily_1_6.gif"; //Girl Crush Look item img_1
+import { DataLink, FormatPrice } from "../../common/CommonFunction.js";
 
 function Item(props) {
+  const initalPrice = props.price;
   const [formattedPrice, setformattedPrice] = useState();
   useEffect(() => {
-    setformattedPrice(
-      typeof props.price === "number"
-        ? props.price.toLocaleString()
-        : "가격 정보 없음"
-    );
-    console.log(props.price);
-  }, [props.price]);
+    FormatPrice(setformattedPrice, initalPrice);
+  }, [initalPrice]);
   return (
     <>
       <Col
@@ -63,48 +60,13 @@ const Daily = () => {
   const [dailyData_5, setDailyData_5] = useState("");
   const [dailyData_6, setDailyData_6] = useState("");
   useEffect(() => {
-    async function Daily_1() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "씨리얼셔츠");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData_1(DailySnap.data());
-    }
-    async function Daily_2() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "캘리알파카니트");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData_2(DailySnap.data());
-    }
-    async function Daily_3() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "코코샤가디건");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData_3(DailySnap.data());
-    }
-    async function Daily_4() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "질샌더뉴슬랙스; 시즌버전");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData_4(DailySnap.data());
-    }
-    async function Daily_5() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "에르텐션스커트; 롱버전");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData_5(DailySnap.data());
-    }
-    async function Daily_6() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "매니쉬셔츠");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData_6(DailySnap.data());
-    }
-    Daily_1();
-    Daily_2();
-    Daily_3();
-    Daily_4();
-    Daily_5();
-    Daily_6();
+    const CollectionId = "Daily";
+    DataLink(CollectionId, "씨리얼셔츠", setDailyData_1);
+    DataLink(CollectionId, "캘리알파카니트", setDailyData_2);
+    DataLink(CollectionId, "코코샤가디건", setDailyData_3);
+    DataLink(CollectionId, "질샌더뉴슬랙스; 시즌버전", setDailyData_4);
+    DataLink(CollectionId, "에르텐션스커트; 롱버전", setDailyData_5);
+    DataLink(CollectionId, "매니쉬셔츠", setDailyData_6);
   }, []);
   return (
     <>

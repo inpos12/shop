@@ -5,6 +5,8 @@ import style from "../Navbar/Navbar.module.css";
 import "../Navbar/Navbar.module.css";
 import Hamburger from "./Hamburger";
 import Logo from "../Navbar/logo.png";
+import styled from "styled-components";
+import { DataLink } from "../common/CommonFunction";
 
 const Login = {
   display: "flex",
@@ -12,20 +14,34 @@ const Login = {
   margin: "0",
 };
 
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+`;
+
 const NavbarElement = () => {
   const auth = getAuth();
-  const [uid, setUid] = useState("");
+  const [uids, setUids] = useState("");
+  const [adminUid, setAdminUid] = useState("");
 
   // useEffect 훅을 사용하여 Firebase 인증 상태 변화 감지
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUid(user.email);
-      } else {
-        setUid("");
-      }
-    });
-  }, []); // 의존성 배열: auth 객체 변화에만 반응
+    DataLink("test", "uid", setAdminUid);
+  }, [adminUid.ids]);
+  useEffect(() => {
+    if (adminUid) {
+      onAuthStateChanged(auth, (user) => {
+        if (user && user.uid === adminUid.ids) {
+          setUids("관리자");
+          // 사용자가 로그인한 경우
+        } else if (user) {
+          setUids(user.email);
+        } else {
+          setUids("");
+        }
+      });
+    }
+  }, [adminUid]); // 의존성 배열: auth 객체 변화에만 반응
 
   const handleLogout = async () => {
     const auth = getAuth();
@@ -63,8 +79,8 @@ const NavbarElement = () => {
             </ul>
           </div>
           <ul style={Login}>
-            <div id="email">{uid}</div>
-            {uid ? (
+            <div id="email">{uids}</div>
+            {uids ? (
               <Link id="logout" to="/" onClick={handleLogout}>
                 Logout
               </Link>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import $ from "jquery";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import style from "./Item_page.module.css";
 import down_img from "./arrows_down_40386.png";
+import { FormatPrice } from "../../common/CommonFunction";
 
 const DownButton = () => {
   const AmountList = document.getElementById("Amount_list");
@@ -21,14 +21,9 @@ function ProductPage(props) {
   const [amount, setAmount] = useState(1);
   const [displayPrice, setDisplayPrice] = useState(initalPrice);
   useEffect(() => {
-    setDisplayPrice(
-      typeof initalPrice === "number"
-        ? initalPrice.toLocaleString()
-        : "가격정보없음"
-    );
-    console.log(initalPrice);
+    FormatPrice(setDisplayPrice, initalPrice);
   }, [initalPrice]);
-
+  // 선택갯수의따라 가격변경
   const handleAmountChange = (newAmount) => {
     setAmount(newAmount);
     setDisplayPrice((initalPrice * newAmount).toLocaleString());
@@ -75,8 +70,22 @@ function ProductPage(props) {
               ))}
             </div>
             <div className={style.Item_buy_button_box}>
-              <button className={style.Item_buy_button}>구매하기</button>
-              <button className={style.Item_add_button}>장바구니 담기</button>
+              <button
+                className={style.Item_buy_button}
+                onClick={() => {
+                  alert("준비중입니다.");
+                }}
+              >
+                구매하기
+              </button>
+              <button
+                className={style.Item_add_button}
+                onClick={() => {
+                  alert("준비중입니다.");
+                }}
+              >
+                장바구니 담기
+              </button>
             </div>
           </Col>
         </Row>

@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import img_1 from "./Daily_1_1.gif";
-
 import ProductPage from "../../../ProductPageCommon/ProductPage";
-import db from "../../../../database_test/Firebase";
+import { DataLink } from "../../../../common/CommonFunction";
 
 const Daily_1_page = () => {
   const [dailyData, setDailyData] = useState("");
   useEffect(() => {
-    async function Daily_1() {
-      // 씨리얼셔츠
-      const DailyRef = doc(db, "Daily", "씨리얼셔츠");
-      const DailySnap = await getDoc(DailyRef);
-      setDailyData(DailySnap.data());
-    }
-    Daily_1();
+    DataLink("Daily", "씨리얼셔츠", setDailyData);
   }, []);
 
   return (

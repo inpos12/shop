@@ -7,19 +7,20 @@ import {
   doc,
   collection,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
 import db from "./Components/database_test/Firebase";
+import { DataLink } from "./Components/common/CommonFunction";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 200px 0;
 `;
 const Row = styled.div`
   max-width: 500px;
   width: 100%;
-
+  margin: 100px 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -65,7 +66,7 @@ const Admin = () => {
   // 데이터 수정
   //어드민로그인체크
   const [isAllowed, setIsAllowed] = useState(false);
-  const [uid, setUid] = useState();
+
   //데이터추가
   const [collectionId, setCollectionId] = useState("");
   const [dataName, setDataName] = useState("");
@@ -80,28 +81,34 @@ const Admin = () => {
   const [changeShoesPrice, setChangeShoesPrice] = useState(0);
   const [changeDailyPrice, setChangeDailyPrice] = useState(0);
   const [changeGirlCrushPrice, setChangeGirlCrushPrice] = useState(0);
+  //
+
+  const [adminUid, setAdminUid] = useState("");
+  // const [isAdmin, setIsAdmin] =useState(false)
+  const auth = getAuth();
 
   useEffect(() => {
-    //어드민로그인체크
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // 관리가계정O
-        setUid(user.email);
-        if (user.email === process.env.REACT_APP_ADMIN_ACCOUNT) {
-          setIsAllowed(true);
-          // 관리자계정X
+    DataLink("test", "uid", setAdminUid);
+  }, [adminUid.ids]);
+
+  useEffect(() => {
+    if (adminUid) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          if (user.uid === adminUid.ids) {
+            setIsAllowed(true);
+          } else {
+            setIsAllowed(false);
+          }
         } else {
-          alert("관리자계정으로 로그인해주세요");
-          window.location.replace("/shop");
           setIsAllowed(false);
         }
-      } else {
-        window.location.replace("/shop");
-        alert("관리자계정으로 로그인해주세요");
-        setIsAllowed(false);
-      }
-    });
+      });
+    }
+  }, [adminUid, auth]);
+  useEffect(() => {
+    //어드민로그인체크
+
     //    컬렉션 ID 나열
     async function datalist(collectionID, setID) {
       const Colleciontlink = await getDocs(collection(db, collectionID));
@@ -111,7 +118,7 @@ const Admin = () => {
     datalist("Shoes", setDataShoesID);
     datalist("Daily", setDataDailyID);
     datalist("GirlCrush", setDataGirlCrushID);
-  }, [setUid]); //이메일이 변경될때마다 리랜더링
+  }, []); //이메일이 변경될때마다 리랜더링
   // 데이터추가 input의 TEXT를 가져옴
   const addShoesData = async () => {
     const docRef = doc(db, collectionId, dataName); // docId를 문자열로 설정

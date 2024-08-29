@@ -1,17 +1,20 @@
-import React from "react";
-import img_12 from "./GirlCrush_1_12.gif";
-import Item_List from "../../item.json";
+import React, { useState, useEffect } from "react";
+import img_1 from "./GirlCrush_1_12.gif";
 import ProductPage from "../../../ProductPageCommon/ProductPage";
+import { DataLink } from "../../../../common/CommonFunction";
 
 const GirlCrush_12_page = () => {
+  const [GirlCrushData, setGirlCrushData] = useState("");
+  useEffect(() => {
+    DataLink("GirlCrush", "스텐비 데님 크롭 자켓", setGirlCrushData);
+  }, []);
   return (
     <>
       <ProductPage
-        imgsrc={img_12}
-        title_1={Item_List[11].title_1}
-        title_2={Item_List[11].title_2}
-        price={Item_List[11].price}
-        color={Item_List[11].color}
+        imgsrc={img_1}
+        title_1={GirlCrushData.name}
+        price={GirlCrushData.price}
+        color={GirlCrushData.size}
       />
     </>
   );

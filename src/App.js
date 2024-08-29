@@ -1,8 +1,9 @@
-import React from "react";
-
-import db from "./Components/database_test/Firebase";
+import React, { useState, useEffect } from "react";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { DataLink } from "./Components/common/CommonFunction";
 import "../src/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Admin from "../src/Admin";
 // 네비게이션
 import Navbar from "../src/Components/Navbar/Navbar";
 // 카카오톡
@@ -61,11 +62,42 @@ import SignUp from "../src/Components/Screens/SignUp";
 import AdminPage from "./Components/Screens/Admin";
 
 const App = () => {
+  const [adminUid, setAdminUid] = useState("");
+  const [isAdmin, setIsAdmin] = useState(true);
+  const auth = getAuth();
+
+  useEffect(() => {
+    DataLink("test", "uid", setAdminUid);
+  }, [adminUid.ids]);
+  useEffect(() => {
+    if (adminUid) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          if (user.uid === adminUid.ids) {
+            setIsAdmin(true);
+            console.log(isAdmin);
+          } else {
+            setIsAdmin(false);
+            console.log(isAdmin);
+          }
+        } else {
+          setIsAdmin(false);
+          console.log(isAdmin);
+        }
+      });
+    }
+  }, [adminUid, auth]);
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Navbar />
       <Kakao />
       <Routes>
+        <Route
+          path="/Admin"
+          element={isAdmin ? <Admin /> : <Navigate to="/" />}
+          // element={<Admin />}
+        />
         {/* 메인페이지 */}
         <Route path="/" element={<Home />} />
         {/* 신발 */}

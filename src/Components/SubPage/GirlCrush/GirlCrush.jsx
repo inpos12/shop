@@ -18,17 +18,14 @@ import Img_10 from "../GirlCrush/GirlCrush_1_10.gif"; //Girl Crush Look item img
 import Img_11 from "../GirlCrush/GirlCrush_1_11.gif"; //Girl Crush Look item img_1
 import Img_12 from "../GirlCrush/GirlCrush_1_12.gif"; //Girl Crush Look item img_1
 import GirlCrush_style from "../GirlCrush/GirlCrush.module.css";
+import { DataLink, FormatPrice } from "../../common/CommonFunction.js";
 
 function Item(props) {
+  const initalPrice = props.price;
   const [formattedPrice, setformattedPrice] = useState();
   useEffect(() => {
-    setformattedPrice(
-      typeof props.price === "number"
-        ? props.price.toLocaleString()
-        : "가격 정보 없음"
-    );
-    console.log(props.price);
-  }, [props.price]);
+    FormatPrice(setformattedPrice, initalPrice);
+  }, [initalPrice]);
   return (
     <>
       <Col lg={3} md={5} sm={5} xs={5} id="GirlCrush_col">
@@ -54,48 +51,13 @@ const GirlCrush = () => {
   const [GirlCrushData_5, setGirlCrushData_5] = useState("");
   const [GirlCrushData_6, setGirlCrushData_6] = useState("");
   useEffect(() => {
-    async function GirlCrush_1() {
-      // 씨리얼셔츠
-      const GirlCrushRef = doc(db, "GirlCrush", "디엔즈 로우 와이드 팬츠");
-      const GirlCrushSnap = await getDoc(GirlCrushRef);
-      setGirlCrushData_1(GirlCrushSnap.data());
-    }
-    async function GirlCrush_2() {
-      // 씨리얼셔츠
-      const GirlCrushRef = doc(db, "GirlCrush", "세핀즈 셔링 크롭 티셔츠");
-      const GirlCrushSnap = await getDoc(GirlCrushRef);
-      setGirlCrushData_2(GirlCrushSnap.data());
-    }
-    async function GirlCrush_3() {
-      // 씨리얼셔츠
-      const GirlCrushRef = doc(db, "GirlCrush", "프런트 하이핏 부츠컷팬츠");
-      const GirlCrushSnap = await getDoc(GirlCrushRef);
-      setGirlCrushData_3(GirlCrushSnap.data());
-    }
-    async function GirlCrush_4() {
-      // 씨리얼셔츠
-      const GirlCrushRef = doc(db, "GirlCrush", "보넬 나일론 루즈핏 점퍼");
-      const GirlCrushSnap = await getDoc(GirlCrushRef);
-      setGirlCrushData_4(GirlCrushSnap.data());
-    }
-    async function GirlCrush_5() {
-      // 씨리얼셔츠
-      const GirlCrushRef = doc(db, "GirlCrush", "뷰리팅 레터링 티셔츠");
-      const GirlCrushSnap = await getDoc(GirlCrushRef);
-      setGirlCrushData_5(GirlCrushSnap.data());
-    }
-    async function GirlCrush_6() {
-      // 씨리얼셔츠
-      const GirlCrushRef = doc(db, "GirlCrush", "스텐비 데님 크롭 자켓");
-      const GirlCrushSnap = await getDoc(GirlCrushRef);
-      setGirlCrushData_6(GirlCrushSnap.data());
-    }
-    GirlCrush_1();
-    GirlCrush_2();
-    GirlCrush_3();
-    GirlCrush_4();
-    GirlCrush_5();
-    GirlCrush_6();
+    const CollectionId = "GirlCrush";
+    DataLink(CollectionId, "디엔즈 로우 와이드 팬츠", setGirlCrushData_1);
+    DataLink(CollectionId, "세핀즈 셔링 크롭 티셔츠", setGirlCrushData_2);
+    DataLink(CollectionId, "프런트 하이핏 부츠컷팬츠", setGirlCrushData_3);
+    DataLink(CollectionId, "보넬 나일론 루즈핏 점퍼", setGirlCrushData_4);
+    DataLink(CollectionId, "뷰리팅 레터링 티셔츠", setGirlCrushData_5);
+    DataLink(CollectionId, "스텐비 데님 크롭 자켓", setGirlCrushData_6);
   }, []);
   return (
     <>

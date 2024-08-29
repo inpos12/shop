@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Container } from "react-bootstrap";
 import styled from "styled-components";
 import "./Components.css";
+import { FormatPrice } from "../../common/CommonFunction";
 
 export const Img = styled.img`
   image-rendering: -moz-crisp-edges; /* firefox */
@@ -47,7 +48,11 @@ export const Hr = styled.hr`
 `;
 
 export function ItemBox(props) {
-  const formattedPrice = props.price.toLocaleString();
+  const initalPrice = props.price;
+  const [formattedPrice, setformattedPrice] = useState();
+  useEffect(() => {
+    FormatPrice(setformattedPrice, initalPrice);
+  }, [initalPrice]);
   return (
     <>
       <Col
