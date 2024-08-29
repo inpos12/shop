@@ -23,6 +23,7 @@ const NavbarElement = () => {
   const auth = getAuth();
   const [uids, setUids] = useState("");
   const [adminUid, setAdminUid] = useState("");
+  const admin = document.getElementById("admin");
 
   // useEffect 훅을 사용하여 Firebase 인증 상태 변화 감지
   useEffect(() => {
@@ -33,6 +34,8 @@ const NavbarElement = () => {
       onAuthStateChanged(auth, (user) => {
         if (user && user.uid === adminUid.ids) {
           setUids("관리자");
+          admin.innerHTML =
+            "<a style=color:black;text-decoration:none href=shop/admin>관리자페이지</a>";
           // 사용자가 로그인한 경우
         } else if (user) {
           setUids(user.email);
@@ -48,6 +51,7 @@ const NavbarElement = () => {
     try {
       await signOut(auth);
       alert("로그아웃성공");
+      window.location.replace("./shop");
     } catch {
       alert("로그아웃 실패");
     }
@@ -79,6 +83,7 @@ const NavbarElement = () => {
             </ul>
           </div>
           <ul style={Login}>
+            <div id="admin"></div>
             <div id="email">{uids}</div>
             {uids ? (
               <Link id="logout" to="/" onClick={handleLogout}>

@@ -68,25 +68,22 @@ const App = () => {
 
   useEffect(() => {
     DataLink("test", "uid", setAdminUid);
-  }, [adminUid.ids]);
+  }, []);
   useEffect(() => {
     if (adminUid) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           if (user.uid === adminUid.ids) {
             setIsAdmin(true);
-            console.log(isAdmin);
           } else {
             setIsAdmin(false);
-            console.log(isAdmin);
           }
         } else {
           setIsAdmin(false);
-          console.log(isAdmin);
         }
       });
     }
-  }, [adminUid, auth]);
+  }, [adminUid]);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
